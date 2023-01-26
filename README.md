@@ -8,7 +8,8 @@
 
 > Utilizado pra identar e configurar estilos de escrita do código, como espaço, identação, etc.
 
-Crie um arquivo chamado _.editorconfig_ no root do projeto e insira o código abaixo 👇
+
+📄 .editorconfig
 
 ```
 # editorconfig.org
@@ -29,7 +30,6 @@ insert_final_newline = true
 
 > Utilizado para encontrar erros de escrita e formatação no código
 
-Para instalar, rode o comando abaixo no terminal e configure conforme as opções fornecidas no próprio terminal.
 
 ```
 npx eslint --init
@@ -41,13 +41,12 @@ npx eslint --init
 
 > Plugin adicional do eslint que ajuda a verificar erros e inconsistências no uso dos hooks
 
-Para instalar, rode o comando abaixo no terminal 👇
 
 ```
 yarn add eslint-plugin-react-hooks --dev
 ```
 
-Na sequência, configure o arquivo _.eslintcr.json_ com as regras abaixo 👇
+📄 .eslintcr.json
 
 ```
 "settings": {
@@ -73,13 +72,12 @@ _.Prettier_
 
 > Utilizado para formatação visual do código (uso de aspas simples ou aspas duplas, virgula, etc). Diferente do eslint que é utilizado para encontrar erros, tais como erros de tipagem, o Prettier é mais sobre formatação.
 
-Para instalar, rode o comando abaixo no terminal 👇
 
 ```
 yarn add --dev --exact prettier
 ```
 
-Após isso, crie um novo arquivo _.prettierrc_ com as regras abaixo 👇
+📄 .prettierrc
 
 ```
 {
@@ -95,12 +93,12 @@ Depois disso precisamos configurar o eslint com as novas configurações do pret
 yarn add --dev eslint-plugin-prettier eslint-config-prettier
 ```
 
-Após rodar o comando, usaremos a configuração abaixo no arquivo _.eslintrc.json_
+📄 eslintrc.json
 
 ```
 "extends": ["plugin:prettier/recommended"]
 ```
-Configuraremos também o arquivo settings.json da pasta .vscode, conforme dados abaixo
+📄 .vscode/settings.json
 ```
 {
   "editor.formatOnSave": false,
@@ -117,22 +115,20 @@ _husky_ & _lint-staged_
 npx husky-init && yarn
 yarn add lint-staged --dev
 ```
-Depois disso configure o package.json conforme abaixo:
+📄 package.json
 ```
 "scripts": {
     "lint": "eslint src --max-warnings=0",
   },
-```
-O package.json conforme abaixo:
-```
-"lint-staged": {
+
+  "lint-staged": {
   "src/**/*": [
     "yarn lint --fix"
   ]
 }
 ```
 
-E no arquivo _pre-commit_ configuraremos assim
+📄 .husky/pre-commit
 
 ```
 #!/usr/bin/env sh
@@ -149,7 +145,7 @@ _Jest_
 yarn add --dev jest @babel/preset-typescript @types/jest
 yarn add -D jest-environment-jsdom
 ```
-Criaremos a pasta .jest com o arquivo setup.js na raiz do projeto, e depois, no arquivo _eslint_ colocaremos a configuração abaixo
+Criaremos a pasta .jest com o arquivo setup.js na raiz do projeto, e depois, no arquivo _.eslintrc.json_ colocaremos a configuração abaixo
 ```
 "env": {
     "jest": true,
@@ -203,4 +199,71 @@ module.exports = {
       '<rootDir>/__mocks__/fileMock.js'
   }
 }
+```
+___
+_Styled Components_
+> Biblioteca de estilização que utiliza "CSS in JS"
+```
+yarn add --dev @types/styled-components babel-plugin-styled-components
+```
+```
+yarn add styled-components
+```
+📄 .babelrc
+```
+{
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": true
+      }
+    ]
+  ],
+  "presets": ["next/babel", "@babel/preset-typescript"]
+}
+```
+📄 next.config.js
+```
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  compiler: {
+    styledComponents: true
+  },
+  experimental: {
+    appDir: true
+  }
+}
+
+module.exports = nextConfig
+```
+📄 src/app/_document.tsx
+```
+import Document, { DocumentContext } from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
+
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />)
+        })
+
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: [initialProps.styles, sheet.getStyleElement()]
+      }
+    } finally {
+      sheet.seal()
+    }
+  }
+}
+
 ```
