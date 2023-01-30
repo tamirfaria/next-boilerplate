@@ -1,7 +1,7 @@
 import Contacts from '@/components/Contacts'
 import Image from 'next/image'
 import { useRef } from 'react'
-import { Footer, Text, Wrapper } from './styles'
+import * as S from './styles'
 
 const Main = () => {
   const windowSize = useRef([window.innerWidth, window.innerHeight])
@@ -14,7 +14,7 @@ const Main = () => {
   const { width, heigth } = currentSize
 
   return (
-    <Wrapper>
+    <S.Wrapper>
       <Image
         src="/logo.svg"
         alt="Logo"
@@ -23,10 +23,10 @@ const Main = () => {
         priority
       />
       <Contacts />
-      <Footer>
-        <Text>Desenvolvido por Tamir Faria | 2023</Text>
-      </Footer>
-    </Wrapper>
+      <S.Footer>
+        <S.Text>Desenvolvido por Tamir Faria | 2023</S.Text>
+      </S.Footer>
+    </S.Wrapper>
   )
 }
 
