@@ -1,26 +1,32 @@
 import Contacts from '@/components/Contacts'
 import Image from 'next/image'
-import styled from 'styled-components'
-import styles from './page.module.css'
-
-const Footer = styled.footer`
-  position: absolute;
-  bottom: 10rem;
-`
-const Text = styled.p`
-  font-size: 2rem;
-  color: #808080;
-`
+import { useRef } from 'react'
+import { Footer, Text, Wrapper } from './styles'
 
 const Main = () => {
+  const windowSize = useRef([window.innerWidth, window.innerHeight])
+
+  const currentSize =
+    windowSize.current[0] < 1024
+      ? { width: 300, heigth: 300 }
+      : { width: 480, heigth: 480 }
+
+  const { width, heigth } = currentSize
+
   return (
-    <main className={styles.main}>
-      <Image src="/logo.svg" alt="Logo" width={480} height={480} priority />
+    <Wrapper>
+      <Image
+        src="/logo.svg"
+        alt="Logo"
+        width={width}
+        height={heigth}
+        priority
+      />
       <Contacts />
       <Footer>
         <Text>Desenvolvido por Tamir Faria | 2023</Text>
       </Footer>
-    </main>
+    </Wrapper>
   )
 }
 
