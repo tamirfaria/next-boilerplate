@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import * as S from './styles'
+import styles from './styles.module.css'
 
 const contactList = [
   {
@@ -27,15 +27,15 @@ const contactList = [
 
 const Contacts = () => {
   return (
-    <S.Wrapper>
+    <div className={styles.wrapper}>
       {contactList.map((item, index) => (
-        <S.Icon key={`${item.alt}-${index}`}>
+        <div className={styles.icon} key={`${item.alt}-${index}`}>
           <Link href={item.link} target="_blank">
             <Image alt={item.alt} src={item.icon} height={48} width={48} />
           </Link>
-        </S.Icon>
+        </div>
       ))}
-    </S.Wrapper>
+    </div>
   )
 }
 

@@ -1,24 +1,20 @@
 import Contacts from '@/components/Contacts'
 import Image from 'next/image'
 import { useRef } from 'react'
-import * as S from './styles'
+import styles from './styles.module.css'
 
 const Main = () => {
   const windowSize = useRef([window.innerWidth, window.innerHeight])
 
-  const currentSize = () => {
-    if (window !== undefined) {
-      windowSize.current[0] < 1024
-        ? { width: 300, heigth: 300 }
-        : { width: 480, heigth: 480 }
-    }
-    return { width: 300, heigth: 300 }
-  }
+  const currentSize = () =>
+    windowSize.current[0] < 1024
+      ? { width: 300, heigth: 300 }
+      : { width: 480, heigth: 480 }
 
   const { width, heigth } = currentSize()
 
   return (
-    <S.Wrapper>
+    <div className={styles.wrapper}>
       <Image
         src="/logo.svg"
         alt="Logo"
@@ -27,11 +23,17 @@ const Main = () => {
         priority
       />
       <Contacts />
-      <S.Footer>
-        <S.Text>Desenvolvido por Tamir Faria | 2023</S.Text>
-      </S.Footer>
-    </S.Wrapper>
+      <footer className={styles.footer}>
+        <p className={styles.text}>Desenvolvido por Tamir Faria | 2023</p>
+      </footer>
+    </div>
   )
+}
+
+export async function getServerSideProps() {
+  return {
+    props: { Main }
+  }
 }
 
 export default Main
