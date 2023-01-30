@@ -6,12 +6,16 @@ import * as S from './styles'
 const Main = () => {
   const windowSize = useRef([window.innerWidth, window.innerHeight])
 
-  const currentSize =
-    windowSize.current[0] < 1024
-      ? { width: 300, heigth: 300 }
-      : { width: 480, heigth: 480 }
+  const currentSize = () => {
+    if (window !== undefined) {
+      windowSize.current[0] < 1024
+        ? { width: 300, heigth: 300 }
+        : { width: 480, heigth: 480 }
+    }
+    return { width: 300, heigth: 300 }
+  }
 
-  const { width, heigth } = currentSize
+  const { width, heigth } = currentSize()
 
   return (
     <S.Wrapper>
