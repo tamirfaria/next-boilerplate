@@ -1,5 +1,4 @@
-import GlobalStyles from '@/styles/global'
-import StyledComponentsRegistry from 'lib/registry'
+import '../styles/global.css'
 
 export default function RootLayout({
   children
@@ -9,10 +8,7 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body>
-        <GlobalStyles />
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

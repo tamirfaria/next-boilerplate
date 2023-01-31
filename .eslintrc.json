@@ -25,7 +25,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint"],
-  "ignorePatterns": ["**/*.css", "**/*.module.css"],
+  "ignorePatterns": ["**/**.css", "**/**.module.css"],
   "rules": {
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
