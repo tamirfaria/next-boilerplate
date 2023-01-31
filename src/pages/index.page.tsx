@@ -1,5 +1,6 @@
 import Contacts from '@/components/Contacts'
 import Image from 'next/image'
+import '../styles/global.css'
 import styles from './styles.module.css'
 
 const Main = () => {
