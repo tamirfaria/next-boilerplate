@@ -1,4 +1,5 @@
 import Contacts from '@/components/Contacts'
+import Waves from '@/components/Waves'
 import Image from 'next/image'
 import '../styles/global.css'
 import styles from './styles.module.css'
@@ -11,6 +12,7 @@ const Main = () => {
       <footer className={styles.footer}>
         <p className={styles.text}>Desenvolvido por Tamir Faria | 2023</p>
       </footer>
+      <Waves />
     </main>
   )
 }
