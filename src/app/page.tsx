@@ -1,4 +1,3 @@
-'use client'
 import Main from '@/pages/index.page'
 
 export default function Home() {
