@@ -1,17 +1,16 @@
 # Next.js | Boilerplate
 
-### Dependências e passo a passo de configurações utilizadas:
+## Dependências e passo a passo de configurações utilizadas
 
 ---
 
-#### _.editorconfig_
+### _.editorconfig_
 
 > Utilizado pra identar e configurar estilos de escrita do código, como espaço, identação, etc.
 
-
 📄 .editorconfig
 
-```
+```bash
 # editorconfig.org
 root = true
 
@@ -30,8 +29,7 @@ insert_final_newline = true
 
 > Utilizado para encontrar erros de escrita e formatação no código
 
-
-```
+```bash
 npx eslint --init
 ```
 
@@ -41,14 +39,13 @@ npx eslint --init
 
 > Plugin adicional do eslint que ajuda a verificar erros e inconsistências no uso dos hooks
 
-
-```
+```bash
 yarn add eslint-plugin-react-hooks --dev
 ```
 
 📄 .eslintcr.json
 
-```
+```bash
 "settings": {
     "react": {
       "version": "detect"
@@ -68,18 +65,17 @@ yarn add eslint-plugin-react-hooks --dev
 
 ---
 
-_.Prettier_
+### _.Prettier_
 
 > Utilizado para formatação visual do código (uso de aspas simples ou aspas duplas, virgula, etc). Diferente do eslint que é utilizado para encontrar erros, tais como erros de tipagem, o Prettier é mais sobre formatação.
 
-
-```
+```bash
 yarn add --dev --exact prettier
 ```
 
 📄 .prettierrc
 
-```
+```bash
 {
   "trailingComma": "none",
   "semi": false,
@@ -89,17 +85,19 @@ yarn add --dev --exact prettier
 
 Depois disso precisamos configurar o eslint com as novas configurações do prettier. Para isso usaremos o "eslint-plugin-prettier", que rodará o prettier como uma regra do eslint.
 
-```
+```bash
 yarn add --dev eslint-plugin-prettier eslint-config-prettier
 ```
 
 📄 eslintrc.json
 
-```
+```bash
 "extends": ["plugin:prettier/recommended"]
 ```
+
 📄 .vscode/settings.json
-```
+
+```bash
 {
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
@@ -107,16 +105,19 @@ yarn add --dev eslint-plugin-prettier eslint-config-prettier
   }
 }
 ```
-___
-_husky_ & _lint-staged_
+
+### _husky_ & _lint-staged_
+>
 > Impede que façamos um commit com erros do prettier e do eslint.
 
-```
+```bash
 npx husky-init && yarn
 yarn add lint-staged --dev
 ```
+
 📄 package.json
-```
+
+```bash
 "scripts": {
     "lint": "eslint src --max-warnings=0",
   },
@@ -130,30 +131,34 @@ yarn add lint-staged --dev
 
 📄 .husky/pre-commit
 
-```
+```bash
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx --no-install lint-staged
 ```
-___
 
-_Jest_
+### _Jest_
+>
 > Usaremos o Jest para testar nosso código
 
-```
+```bash
 yarn add --dev jest @babel/preset-typescript @types/jest
 yarn add -D jest-environment-jsdom
 ```
+
 Criaremos a pasta .jest com o arquivo setup.js na raiz do projeto, e depois, no arquivo _.eslintrc.json_ colocaremos a configuração abaixo
-```
+
+```bash
 "env": {
     "jest": true,
     "node": true
   },
 ```
+
 Na sequencia criaremos o arquivo _jest.config.js_
-```
+
+```bash
 module.exports = {
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', '/next/'],
@@ -166,33 +171,40 @@ module.exports = {
 }
 
 ```
+
 Na sequencia criaremos o arquivo _.babelrc_
-```
+
+```bash
 {
   "presets": ["next/babel", "@babel/preset-typescript"]
 }
 ```
 
 Por fim, colocaremos um novo script no package.json
-```
+
+```bash
  "scripts": {
     "test": "jest"
   },
 ```
-___
-_React Testing Library_
+
+### _React Testing Library_
 
 Instalação
-```
+
+```bash
 yarn add --dev @testing-library/react @testing-library/jest-dom
 ```
+
 Configure o .jest/setup.ts
-```
+
+```bash
 import '@testing-library/jest-dom';
 ```
 
 Crie um arquivo config/CSSStub.js e insira a configuração abaixo:
-```
+
+```bash
 module.exports = {
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
@@ -200,17 +212,22 @@ module.exports = {
   }
 }
 ```
-___
-_Styled Components_
+
+### _Styled Components_
+>
 > Biblioteca de estilização que utiliza "CSS in JS"
-```
+
+```bash
 yarn add --dev @types/styled-components babel-plugin-styled-components
 ```
-```
+
+```bash
 yarn add styled-components
 ```
+
 📄 .babelrc
-```
+
+```bash
 {
   "plugins": [
     [
@@ -223,8 +240,10 @@ yarn add styled-components
   "presets": ["next/babel", "@babel/preset-typescript"]
 }
 ```
+
 📄 next.config.js
-```
+
+```bash
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -238,8 +257,10 @@ const nextConfig = {
 
 module.exports = nextConfig
 ```
+
 📄 src/app/_document.tsx
-```
+
+```bash
 import Document, { DocumentContext } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 

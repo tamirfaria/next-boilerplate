@@ -1,5 +1,12 @@
-import Main from '@/pages/index.page'
+import { Analytics } from '@vercel/analytics/react'
+
+import Main from '../pages/index.page'
 
 export default function Home() {
-  return <Main />
+  return (
+    <>
+      <Main />
+      <Analytics />
+    </>
+  )
 }
