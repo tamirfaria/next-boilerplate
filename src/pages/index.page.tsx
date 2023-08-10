@@ -26,23 +26,34 @@ const Main = () => {
         <title>Tamir Faria | Desenvolvedor Front End</title>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1"
           key="viewport"
+          content="width=device-width, initial-scale=1"
         />
         <meta
           name="title"
-          content="Tamir Faria | Desenvolvedor Front End
-
-      "
-          key="name"
+          key="title"
+          content="Tamir Faria | Desenvolvedor Front End"
         />
-        <meta name="author" content="Lucas Tamir Faria" key="author" />
+        <meta name="author" key="author" content="Lucas Tamir Faria" />
         <meta property="og:image" content="../../public/logo-light.svg" />
         <meta property="og:image:type" content="../../public/logo-light.svg" />
         <meta
           name="description"
           content="Desenvolvedor Front End | Javascript | Typescript | React.JS | Next.JS | Node.JS"
         />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tamirfaria.vercel.app/" />
+        <meta
+          property="og:title"
+          content="Tamir Faria | Desenvolvedor Front End"
+        />
+        <meta
+          property="og:description"
+          content="Desenvolvedor Front End | Javascript | Typescript | React.JS | Next.JS | Node.JS"
+        />
+        <meta property="og:image" content="../../public/logo-light.svg" />
+
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Analytics />
