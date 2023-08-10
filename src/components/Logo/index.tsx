@@ -1,5 +1,5 @@
-import { ThemeProps } from '@/context/types'
 import Image from 'next/image'
+import { ThemeProps } from '../../context/types'
 import styles from './styles.module.scss'
 
 type LogoProps = {
