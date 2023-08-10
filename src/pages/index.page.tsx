@@ -35,8 +35,14 @@ const Main = () => {
           content="Tamir Faria | Desenvolvedor Front End"
         />
         <meta name="author" key="author" content="Lucas Tamir Faria" />
-        <meta property="og:image" content="../../public/logo-light.svg" />
-        <meta property="og:image:type" content="../../public/logo-light.svg" />
+        <meta
+          property="og:image"
+          content="https://raw.githubusercontent.com/tamirfaria/next-boilerplate/dbbe5441c0d7576f56c4e838af605891dbb6a72c/public/logo-light.svg"
+        />
+        <meta
+          property="og:image:type"
+          content="https://raw.githubusercontent.com/tamirfaria/next-boilerplate/dbbe5441c0d7576f56c4e838af605891dbb6a72c/public/logo-light.svg"
+        />
         <meta
           name="description"
           content="Desenvolvedor Front End | Javascript | Typescript | React.JS | Next.JS | Node.JS"
@@ -52,7 +58,10 @@ const Main = () => {
           property="og:description"
           content="Desenvolvedor Front End | Javascript | Typescript | React.JS | Next.JS | Node.JS"
         />
-        <meta property="og:image" content="../../public/logo-light.svg" />
+        <meta
+          property="og:image"
+          content="https://raw.githubusercontent.com/tamirfaria/next-boilerplate/dbbe5441c0d7576f56c4e838af605891dbb6a72c/public/logo-light.svg"
+        />
 
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
